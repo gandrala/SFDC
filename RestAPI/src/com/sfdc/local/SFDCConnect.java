@@ -18,14 +18,15 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  * @author gandrala This class prepares the http post payload and returns all
- *         the login parameters. Call the oauth2Login() method which java bean
+ *         the login parameters. Call oauth2Login() method which returns a java bean
  *         of type SFDCLoginResponse. To print all bean property values use the
  *         toString() method of SFDCLoginResponse. The method toString() is
- *         overwritten in the bean class to output the values using reflection.
+ *         overwritten in bean class to output values using reflection.
  * 
  *         To close the session call the oauth2Loout() method by passing the
  *         access token. This method call the revoke URL to close the session.
@@ -66,13 +67,14 @@ public class SFDCConnect {
 			HttpResponse response = httpClient.execute(httpPost);
 			String body = EntityUtils.toString(response.getEntity());
 			System.out.println(body);
-			JSONObject json = new JSONObject(body);
-			loginResponse.setId(json.getString("id"));
-			loginResponse.setAccess_token(json.getString("access_token"));
-			loginResponse.setInstance_url(json.getString("instance_url"));
-			loginResponse.setIssued_at(json.getString("issued_at"));
-			loginResponse.setToken_type(json.getString("token_type"));
-			loginResponse.setSignature(json.getString("signature"));
+			
+			JSONObject json = (JSONObject)new JSONParser().parse(body);
+			loginResponse.setId((String) json.get("id"));
+			loginResponse.setAccess_token((String) json.get("access_token"));
+			loginResponse.setInstance_url((String) json.get("instance_url"));
+			loginResponse.setIssued_at((String) json.get("issued_at"));
+			loginResponse.setToken_type((String) json.get("token_type"));
+			loginResponse.setSignature((String) json.get("signature"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

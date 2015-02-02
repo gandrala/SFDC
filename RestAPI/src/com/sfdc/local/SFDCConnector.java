@@ -6,6 +6,8 @@ package com.sfdc.local;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -13,8 +15,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.json.JSONObject;
 
 /**
@@ -46,14 +46,14 @@ public enum SFDCConnector {
 	private String instanceURL;
 
 	private SFDCConnector() {
-
+		refreshToken();
 	}
 
 	public String getAccessToken() {
 		// If the token issued time crossed the refresh interval time then regenerate new token.
 		// This is needed because the access token is valid for the period of session timeout set by admin.
 		// This is a safety net to avoid invalid access token issues during run time.
-		if (tokenIssuedTS+REFRESH_INTERVAL<System.currentTimeMillis())
+		if (tokenIssuedTS!=0 & tokenIssuedTS+REFRESH_INTERVAL<System.currentTimeMillis())
 		{
 			refreshToken();
 		}		
@@ -84,9 +84,12 @@ public enum SFDCConnector {
 			String body = EntityUtils.toString(response.getEntity());
 			System.out.println("Refresh Token Response:"+body);
 			JSONObject json = new JSONObject(body);
-			accessToken = json.getString("access_token");
-			tokenIssuedTS = json.getLong("issued_at");
-			instanceURL = json.getString("instance_url");
+			//JSONObject json = (JSONObject) JSONValue.parseWithException(body);	
+			
+			
+			accessToken = (String) json.get("access_token");
+			tokenIssuedTS = Long.valueOf((String)json.get("issued_at"));
+			instanceURL = (String) json.get("instance_url");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

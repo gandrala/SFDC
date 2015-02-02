@@ -1,6 +1,7 @@
 package com.sfdc.local;
 
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ExtractJSON {
 
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(new FileReader("/Users/gandrala/Downloads/accounts.json"));		
+		Object obj = parser.parse(new FileReader(new File("").getAbsolutePath()+"/src/com/sfdc/local/accounts.json"));		
 		JSONObject json = new JSONObject(JSONValue.toJSONString(obj));		
 		System.out.println(JsonWriter.formatJson(json.toString()));
 		JSONObject urls = (JSONObject) json.getJSONObject("objectDescribe").get("urls");

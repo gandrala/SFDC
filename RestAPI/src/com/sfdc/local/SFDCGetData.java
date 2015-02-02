@@ -21,7 +21,11 @@ import com.cedarsoftware.util.io.JsonWriter;
  * in JSON format. This internally uses the SFDCConnector to get the access_token and the instance URI.
  * This class can be extended to query more than default 2000 records. If data is more than 2K then use
  * nextRecordsUrl value to get the next set of records   
- * 
+ * {"totalSize" : 30211,
+  	"done" : false,
+  	"nextRecordsUrl":"/services/data/v20.0/query/01gD0000002HU6KIAW-2000"
+  	"records" : [ {
+  	}
  */
 public class SFDCGetData {
 

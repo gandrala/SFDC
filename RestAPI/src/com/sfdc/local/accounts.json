@@ -1,0 +1,170 @@
+{
+    "objectDescribe": {
+        "activateable": false, 
+        "triggerable": true, 
+        "keyPrefix": "001", 
+        "createable": true, 
+        "layoutable": true, 
+        "replicateable": true, 
+        "deprecatedAndHidden": false, 
+        "searchable": true, 
+        "custom": false, 
+        "feedEnabled": true, 
+        "updateable": true, 
+        "label": "Account", 
+        "deletable": true, 
+        "customSetting": false, 
+        "labelPlural": "Accounts", 
+        "name": "Account", 
+        "queryable": true, 
+        "undeletable": true, 
+        "mergeable": true, 
+        "retrieveable": true, 
+        "urls": {
+            "rowTemplate": "/services/data/v29.0/sobjects/Account/{ID}", 
+            "compactLayouts": "/services/data/v29.0/sobjects/Account/describe/compactLayouts", 
+            "describe": "/services/data/v29.0/sobjects/Account/describe", 
+            "quickActions": "/services/data/v29.0/sobjects/Account/quickActions", 
+            "layouts": "/services/data/v29.0/sobjects/Account/describe/layouts", 
+            "sobject": "/services/data/v29.0/sobjects/Account"
+        }
+    }, 
+    "recentItems": [
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnsAAG"
+            }, 
+            "Name": "United Oil & Gas, UK", 
+            "Id": "001j0000007HHnsAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000AkuJlAAJ"
+            }, 
+            "Name": "Telestra", 
+            "Id": "001j000000AkuJlAAJ"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000EBg42AAD"
+            }, 
+            "Name": "Salesforce.com, Inc.", 
+            "Id": "001j000000EBg42AAD"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BnTFoAAN"
+            }, 
+            "Name": "Acme", 
+            "Id": "001j000000BnTFoAAN"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BnU6AAAV"
+            }, 
+            "Name": "Jackie Corp", 
+            "Id": "001j000000BnU6AAAV"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BqKUAAA3"
+            }, 
+            "Name": "Sage Import - United Oil & Gas Corp.", 
+            "Id": "001j000000BqKUAAA3"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BqKUCAA3"
+            }, 
+            "Name": "Sage Import - United Oil & Gas, Singapore", 
+            "Id": "001j000000BqKUCAA3"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BqKU7AAN"
+            }, 
+            "Name": "Sage Import - Burlington Textiles Corp of America", 
+            "Id": "001j000000BqKU7AAN"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHo1AAG"
+            }, 
+            "Name": "United Oil & Gas Corp.", 
+            "Id": "001j0000007HHo1AAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnyAAG"
+            }, 
+            "Name": "Grand Hotels & Resorts Ltd", 
+            "Id": "001j0000007HHnyAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnvAAG"
+            }, 
+            "Name": "Burlington Textiles Corp of America", 
+            "Id": "001j0000007HHnvAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BnW0XAAV"
+            }, 
+            "Name": "Projection Management", 
+            "Id": "001j000000BnW0XAAV"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHntAAG"
+            }, 
+            "Name": "United Oil & Gas, Singapore", 
+            "Id": "001j0000007HHntAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j000000BXeIUAA1"
+            }, 
+            "Name": "joe", 
+            "Id": "001j000000BXeIUAA1"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnuAAG"
+            }, 
+            "Name": "Edge Communications", 
+            "Id": "001j0000007HHnuAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnxAAG"
+            }, 
+            "Name": "Dickenson plc", 
+            "Id": "001j0000007HHnxAAG"
+        }, 
+        {
+            "attributes": {
+                "type": "Account", 
+                "url": "/services/data/v29.0/sobjects/Account/001j0000007HHnzAAG"
+            }, 
+            "Name": "Express Logistics and Transport", 
+            "Id": "001j0000007HHnzAAG"
+        }
+    ]
+}

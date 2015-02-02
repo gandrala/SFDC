@@ -14,10 +14,13 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.cedarsoftware.util.io.JsonWriter;
+
 /**
  * @author gandrala This class prepares the http get pay load and returns accounts up to 100 records
  * in JSON format. This internally uses the SFDCConnector to get the access_token and the instance URI.
- * This framework can be extended by adding more parameters like batchsize and recordoffset to support pagination.  
+ * This class can be extended to query more than default 2000 records. If data is more than 2K then use
+ * nextRecordsUrl value to get the next set of records   
  * 
  */
 public class SFDCGetData {
@@ -28,16 +31,17 @@ public class SFDCGetData {
 		JSONObject accountsJSON = new JSONObject();
 		try {
 			URI uri = new URIBuilder(SFDCConnector.INSTANCE.getInstanceURL()
-					+ "/services/data/v29.0/sobjects/Account/")
-			.addParameter("q","SELECT Id,Name FROM Account LIMIT 100")			
+					+ "/services/data/v29.0/query")
+			.addParameter("q","SELECT Id,Name FROM Account")			
 			.build();			
 			HttpGet httpGet = new HttpGet(uri);
 			httpGet.addHeader("Authorization", "Bearer "+SFDCConnector.INSTANCE.getAccessToken());
 			httpGet.addHeader("X-PrettyPrint", "1");
 			HttpResponse response = httpClient.execute(httpGet);
 			String body = EntityUtils.toString(response.getEntity());						
-			JSONObject json = new JSONObject(body);			
-			JSONArray records = json.getJSONArray("recentItems");			
+			JSONObject json = new JSONObject(body);		
+			System.out.println(body);
+			JSONArray records = json.getJSONArray("records");			
 			List<JSONObject> accountRecordsList = new ArrayList<>();
 			for(int i=0;i<records.length();i++)
 			{
@@ -61,16 +65,16 @@ public class SFDCGetData {
 		return accountsJSON;
 	}
 
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		JSONObject accountJSON = new SFDCGetData().getAccounts();
-		
-		try {
-			System.out.println(JsonWriter.formatJson(accountJSON.toString()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		JSONObject accountJSON = new SFDCGetData().getAccounts();
+//		
+//		try {
+//			System.out.println(JsonWriter.formatJson(accountJSON.toString()));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }

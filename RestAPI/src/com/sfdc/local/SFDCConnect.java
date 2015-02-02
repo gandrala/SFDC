@@ -29,7 +29,8 @@ import org.json.simple.parser.JSONParser;
  *         overwritten in bean class to output values using reflection.
  * 
  *         To close the session call the oauth2Loout() method by passing the
- *         access token. This method call the revoke URL to close the session.
+ *         access token. This method calls the revoke URL to close the session.
+ *         
  */
 public class SFDCConnect {
 
@@ -66,7 +67,7 @@ public class SFDCConnect {
 			System.out.println("Before executing post");
 			HttpResponse response = httpClient.execute(httpPost);
 			String body = EntityUtils.toString(response.getEntity());
-			System.out.println(body);
+			//System.out.println(body);
 			
 			JSONObject json = (JSONObject)new JSONParser().parse(body);
 			loginResponse.setId((String) json.get("id"));

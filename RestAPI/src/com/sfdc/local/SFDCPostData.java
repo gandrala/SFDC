@@ -19,7 +19,7 @@ import com.cedarsoftware.util.io.JsonWriter;
 
 /**
  * @author gandrala
- *
+ * 
  */
 public class SFDCPostData {
 
@@ -27,40 +27,37 @@ public class SFDCPostData {
 	 * @param args
 	 */
 
-	public JSONObject CreateAccounts(Account acc)
-	{
+	public JSONObject CreateAccounts(Account acc) {
 		JSONObject accountsJSON = new JSONObject();
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		try
-		{
-			HttpPost httpPost = new HttpPost(SFDCConnector.INSTANCE.getInstanceURL()+ "/services/data/v29.0/sobjects/Account");
-			httpPost.addHeader("Authorization", "Bearer "+SFDCConnector.INSTANCE.getAccessToken());
+		try {
+			HttpPost httpPost = new HttpPost(
+					SFDCConnector.INSTANCE.getInstanceURL()
+							+ "/services/data/v29.0/sobjects/Account");
+			httpPost.addHeader("Authorization", "Bearer "
+					+ SFDCConnector.INSTANCE.getAccessToken());
 			httpPost.addHeader("X-PrettyPrint", "1");
 			JSONObject account = new JSONObject();
 			account.put("Name", acc.getName());
 			account.put("Phone", acc.getPhone());
-			System.out.println(JsonWriter.formatJson(account.toString()));
-			StringEntity se = new StringEntity(account.toString()); 
+			//System.out.println(JsonWriter.formatJson(account.toString()));
+			StringEntity se = new StringEntity(account.toString());
 			se.setContentType("application/json");
 			httpPost.setEntity(se);
 			HttpResponse response = httpClient.execute(httpPost);
-			if (response.getStatusLine().getStatusCode() == 201) {				
-			String body = EntityUtils.toString(response.getEntity());
-			System.out.println(JsonWriter.formatJson(body));
+			//System.out.println(response.toString());
+			if (response.getStatusLine().getStatusCode() == 201) {
+				String body = EntityUtils.toString(response.getEntity());
+				System.out.println(JsonWriter.formatJson(body));
+				accountsJSON.put("status", body);
+			} else {
+				System.out.println("Error while creating the record:"
+						+ response.getStatusLine().getStatusCode());
 			}
-			else
-			{
-				System.out.println("Error while creating the record:"+response.getStatusLine().getStatusCode());
-			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally
-		{
-			if (httpClient!=null)
-			{
+		} finally {
+			if (httpClient != null) {
 				try {
 					httpClient.close();
 				} catch (IOException e) {
@@ -71,13 +68,13 @@ public class SFDCPostData {
 		}
 		return accountsJSON;
 	}
-	
-/*	public static void main(String[] args) {
-		Account a = new Account();
-		a.setName("One Account");
-		a.setPhone("+1 925 679 7899");
-		new SFDCPostData().CreateAccounts(a);
 
-	}*/
+//	public static void main(String[] args) {
+//		Account a = new Account();
+//		a.setName("3 Account");
+//		a.setPhone("+1 925 679 7899");
+//		System.out.println(new SFDCPostData().CreateAccounts(a).toString());
+//
+//	}
 
 }

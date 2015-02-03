@@ -26,8 +26,8 @@ public class SFDCPostData {
 	/**
 	 * @param args
 	 */
-	//List<Account> accounts
-	public JSONObject CreateAccounts()
+
+	public JSONObject CreateAccounts(Account acc)
 	{
 		JSONObject accountsJSON = new JSONObject();
 		CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -37,15 +37,21 @@ public class SFDCPostData {
 			httpPost.addHeader("Authorization", "Bearer "+SFDCConnector.INSTANCE.getAccessToken());
 			httpPost.addHeader("X-PrettyPrint", "1");
 			JSONObject account = new JSONObject();
-			account.put("Name", "x-Account1");
-			account.put("Phone", "1-408-907-9090");
+			account.put("Name", acc.getName());
+			account.put("Phone", acc.getPhone());
 			System.out.println(JsonWriter.formatJson(account.toString()));
 			StringEntity se = new StringEntity(account.toString()); 
 			se.setContentType("application/json");
 			httpPost.setEntity(se);
 			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == 201) {				
 			String body = EntityUtils.toString(response.getEntity());
 			System.out.println(JsonWriter.formatJson(body));
+			}
+			else
+			{
+				System.out.println("Error while creating the record:"+response.getStatusLine().getStatusCode());
+			}
 		}
 		catch(Exception e)
 		{
@@ -66,9 +72,12 @@ public class SFDCPostData {
 		return accountsJSON;
 	}
 	
-	public static void main(String[] args) {
-		new SFDCPostData().CreateAccounts();
+/*	public static void main(String[] args) {
+		Account a = new Account();
+		a.setName("One Account");
+		a.setPhone("+1 925 679 7899");
+		new SFDCPostData().CreateAccounts(a);
 
-	}
+	}*/
 
 }

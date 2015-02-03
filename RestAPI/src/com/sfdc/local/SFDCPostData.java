@@ -18,7 +18,8 @@ import org.json.JSONObject;
 import com.cedarsoftware.util.io.JsonWriter;
 
 /**
- * @author gandrala
+ * @author gandrala This class prepares the http post payload to create an
+ *         account. Created account Id and status is return as JSON object.
  * 
  */
 public class SFDCPostData {
@@ -38,14 +39,15 @@ public class SFDCPostData {
 					+ SFDCConnector.INSTANCE.getAccessToken());
 			httpPost.addHeader("X-PrettyPrint", "1");
 			JSONObject account = new JSONObject();
+			// In prod do null checks
 			account.put("Name", acc.getName());
 			account.put("Phone", acc.getPhone());
-			//System.out.println(JsonWriter.formatJson(account.toString()));
+			// System.out.println(JsonWriter.formatJson(account.toString()));
 			StringEntity se = new StringEntity(account.toString());
 			se.setContentType("application/json");
 			httpPost.setEntity(se);
 			HttpResponse response = httpClient.execute(httpPost);
-			//System.out.println(response.toString());
+			// System.out.println(response.toString());
 			if (response.getStatusLine().getStatusCode() == 201) {
 				String body = EntityUtils.toString(response.getEntity());
 				System.out.println(JsonWriter.formatJson(body));
@@ -69,12 +71,12 @@ public class SFDCPostData {
 		return accountsJSON;
 	}
 
-//	public static void main(String[] args) {
-//		Account a = new Account();
-//		a.setName("3 Account");
-//		a.setPhone("+1 925 679 7899");
-//		System.out.println(new SFDCPostData().CreateAccounts(a).toString());
-//
-//	}
+	// public static void main(String[] args) {
+	// Account a = new Account();
+	// a.setName("3 Account");
+	// a.setPhone("+1 925 679 7899");
+	// System.out.println(new SFDCPostData().CreateAccounts(a).toString());
+	//
+	// }
 
 }

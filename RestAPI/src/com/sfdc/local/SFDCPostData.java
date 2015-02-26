@@ -69,12 +69,12 @@ public class SFDCPostData {
 		return accountsJSON;
 	}
 
-	// public static void main(String[] args) {
-	// Account a = new Account();
-	// a.setName("3 Account");
-	// a.setPhone("+1 925 679 7899");
-	// System.out.println(new SFDCPostData().CreateAccounts(a).toString());
-	//
-	// }
+	 public static void main(String[] args) {
+	 Account a = new Account();
+	 a.setName("3 Account");
+	 a.setPhone("+1 925 679 7899");
+	 System.out.println(new SFDCPostData().CreateAccounts(a).toString());
+	
+	 }
 
 }

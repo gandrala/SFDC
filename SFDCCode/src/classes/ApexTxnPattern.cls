@@ -43,11 +43,11 @@ public class ApexTxnPattern
 			// use the same list to run a upate.
 			List<Contact> contactUpdateList = new List<Contact>();			
 			for (Contact con:contactList)
-			{
-				if (con.Department='Legal')
+			{								
+				if (con.Department.equals('Legal'))
 				{
 					contactUpdateList.add(con);
-				}
+				}			
 			}
 			// run bult update
 			update contactUpdateList;

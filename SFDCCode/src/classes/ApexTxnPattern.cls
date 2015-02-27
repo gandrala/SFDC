@@ -1,4 +1,4 @@
-public with sharing class ApexTxnPattern 
+public class ApexTxnPattern 
 {
 	/*
 	 Each DML statement (insert, update,upsert,delete,undelete,merge) accepts a single or list of sObjects.
@@ -12,8 +12,21 @@ public with sharing class ApexTxnPattern
 	 The method take an allOrNone parameter as input. Pass the value as flase for partial commits, default is true.	 
 	 	 
 	*/ 
-	public static void SimpleDMLOperations
+	public static void SimpleDMLOperation(String accountName,String phone,String region)
 	{
+		try 
+		{		
+			Account acct = new Account(Name=accountName,Phone=phone);
+			insert acct; // return an ID
+			System.debug('Account Id:'+acct.ID);
+			// We can use the same acct reference variable to update the row.
+			acct.Region__c='APJC';
+			update acct;	
+		}
+		catch(Exception e)
+		{
+			System.debug('Error Occurred:'+e.getMessage());
+		}
 		
 	}
 }

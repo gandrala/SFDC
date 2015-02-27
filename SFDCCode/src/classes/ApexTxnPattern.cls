@@ -34,18 +34,19 @@ public class ApexTxnPattern
 		try
 		{
 			List<Contact> contactList = new List<Contact>();
-			contactList.add(new Contact(FirstName='F1',LastName='L4',Department='IT'));
-			contactList.add(new Contact(FirstName='F2',LastName='L4',Department='Finance'));
-			contactList.add(new Contact(FirstName='F3',LastName='L4',Department='Legal'));
-			contactList.add(new Contact(FirstName='F4',LastName='L4',Department='HR'));	
+			contactList.add(new Contact(FirstName='F1',LastName='L1',Department='IT',email='f1@l1.com'));
+			contactList.add(new Contact(FirstName='F2',LastName='L2',Department='Finance',email='f2@l2.com'));
+			contactList.add(new Contact(FirstName='F3',LastName='L3',Department='Legal',email='f3@l3.com'));
+			contactList.add(new Contact(FirstName='F4',LastName='L4',Department='HR',email='f4@l4.com'));	
 			// run bulk insert/update		
-			upsert contactList; // using upsert so that when we run this method again it dosen't insert dupes.
+			upsert contactList Contact.Fields.email; // using upsert so that when we run this method again it dosen't insert dupes.
 			// use the same list to run a upate.
 			List<Contact> contactUpdateList = new List<Contact>();			
 			for (Contact con:contactList)
 			{								
 				if (con.Department.equals('Legal'))
 				{
+					con.Department='Sales';
 					contactUpdateList.add(con);
 				}			
 			}

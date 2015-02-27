@@ -12,7 +12,7 @@ public class ApexTxnPattern
 	 The method take an allOrNone parameter as input. Pass the value as flase for partial commits, default is true.	 
 	 	 
 	*/ 
-	public static void SimpleDMLOperation(String accountName,String phone,String region)
+	public static void simpleDMLOperation(String accountName,String phone,String region)
 	{
 		try 
 		{		
@@ -28,5 +28,33 @@ public class ApexTxnPattern
 			System.debug('Error Occurred:'+e.getMessage());
 		}
 		
+	}
+	public static void simpleBulkDMLOperation()
+	{
+		try
+		{
+			List<Contact> contactList = new List<Contact>();
+			contactList.add(new Contact(FirstName='F1',LastName='L4',Department='IT'));
+			contactList.add(new Contact(FirstName='F2',LastName='L4',Department='Finance'));
+			contactList.add(new Contact(FirstName='F3',LastName='L4',Department='Legal'));
+			contactList.add(new Contact(FirstName='F4',LastName='L4',Department='HR'));	
+			// run bulk insert/update		
+			upsert contactList; // using upsert so that when we run this method again it dosen't insert dupes.
+			// use the same list to run a upate.
+			List<Contact> contactUpdateList = new List<Contact>();			
+			for (Contact con:contactList)
+			{
+				if (con.Department='Legal')
+				{
+					contactUpdateList.add(con);
+				}
+			}
+			// run bult update
+			update contactUpdateList;
+		}
+		catch(Exception e)
+		{
+			System.debug('Error occurred while processing:'+e.getMessage());
+		}
 	}
 }

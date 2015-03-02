@@ -1,5 +1,8 @@
 public class Mailer 
 {
+	/*
+	A sample class on how to send mail in APEX.	
+	*/
 	public void sendMail(String toAddress,String subject,String body)
 	{
 		Messaging.Singleemailmessage mail = new Messaging.Singleemailmessage();

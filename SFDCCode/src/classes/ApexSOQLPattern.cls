@@ -38,7 +38,7 @@ public class ApexSOQLPattern {
 	{
 		Integer i =0;
 		Integer j =0;
-		Account[] accountsWithContacts = [SELECT Id,Name,(SELECT Name FROM Contacts) FROM Account];
+		Account[] accountsWithContacts = [SELECT Id,Name,(SELECT Name FROM Contacts) FROM Account LIMIT 10];
 		for(Account account:accountsWithContacts)
 		{
 			i=i+1;
@@ -51,4 +51,37 @@ public class ApexSOQLPattern {
 			}
 		}
 	}
+	// outer for loop fires a query for every 200 rows
+	public static void getContactsBulkMode()
+	{
+		Integer i = 0;
+		for (Contact[] contacts:[SELECT Id,Name FROM Contact])
+		{
+			for (Contact con:contacts)
+			{
+				i=i+1;
+				system.debug(i+') Name:'+con.Name);
+			}
+		}
+		
+	}
+	public static void getAccountsWithContatsBulkMode()
+	{
+		for (Account[] accounts:[SELECT Id,Name,(SELECT Name FROM Contacts) FROM Account LIMIT 10])
+		{
+			Integer i =0;
+			Integer j =0;			
+			for (Account account:accounts)
+			{												
+				i=i+1;
+				System.debug(i+') Account Name:'+account.Name);
+				j=0;
+				for(Contact contact:account.Contacts)
+				{
+					j=j+1;
+					System.debug(j+') Contact Name:'+contact.Name);
+				}
+			}
+		}
+	}	
 }

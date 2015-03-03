@@ -33,4 +33,13 @@ private class AccountHandlerTestingPattern {
         Account acct = [Select Name From Account where Name='One Account'];
         System.assertEquals('One Account', acct.Name, 'testAccountcreation2:Account Names should match');        
     }
+    // Negative testing to test exception scenario.
+    @isTest
+    static void testAccountCreationNegativeScenario()
+    {
+    	Account a = AccountHandler.insertNewAccount('');
+    	System.assert(a==null);
+    }
+    
+    
 }

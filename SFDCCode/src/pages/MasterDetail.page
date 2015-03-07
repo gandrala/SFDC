@@ -1,3 +1,5 @@
+<!-- This page take the account id from the URL and show the account details as well as the corresponding contacts in a list view -->
+
 <apex:page standardController="Account" showHeader="false">    
 	<apex:pageBlock title="Account Details">
         <apex:pageBlockSection >

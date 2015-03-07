@@ -1,0 +1,12 @@
+<apex:page >
+<!-- Load the zip file  into static resources as public with lable vfimagetest -->
+    <apex:image url="{!URLFOR($Resource.vfimagetest,'cats/kitten1.jpg')}"/>
+    <!--  Same way we can load js and css files
+	 <apex:stylesheet value="{! 
+        URLFOR($Resource.jQueryMobile, 'jquery.mobile-1.4.4.css') }"/>
+    <apex:includeScript value="{! $Resource.jQuery }"/>
+    <apex:includeScript value="{! 
+        URLFOR($Resource.jQueryMobile, 'jquery.mobile-1.4.4.js') }"/>
+
+-->
+</apex:page>
